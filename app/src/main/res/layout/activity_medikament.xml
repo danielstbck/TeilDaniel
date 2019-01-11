@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MedikamentActivity">
+
+    <LinearLayout
+        android:id="@+id/linName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginTop="30dp">
+
+        <TextView
+            android:id="@+id/namePlainText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:text="Name"/>
+
+        <TextView
+            android:id="@+id/nameText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:textColor="@android:color/black"
+            />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linWirkstoff"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginTop="30dp"
+        android:orientation="vertical"
+        android:layout_below="@+id/linName">
+
+        <TextView
+            android:id="@+id/wirkstoffPlainText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:text="Wirkstoff"/>
+
+        <TextView
+            android:id="@+id/wirkstoffText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:textColor="@android:color/black"
+            />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linAnwendung"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginBottom="5dp"
+        android:orientation="vertical"
+        android:layout_below="@+id/linWirkstoff">
+
+        <TextView
+            android:id="@+id/anwendungPlainText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:text="Anwendungsbereich"/>
+
+        <TextView
+            android:id="@+id/anwendungText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:textColor="@android:color/black"
+            />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linVerschreibung"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginTop="30dp"
+        android:orientation="vertical"
+        android:layout_below="@+id/linAnwendung">
+
+        <TextView
+            android:id="@+id/verschreibungsPlainText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:text="Verschreibungspflichtig"/>
+
+        <TextView
+            android:id="@+id/verschreibungsText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:textColor="@android:color/black"
+            />
+
+    </LinearLayout>
+
+</RelativeLayout>
