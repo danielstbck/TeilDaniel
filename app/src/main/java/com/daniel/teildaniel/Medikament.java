@@ -6,6 +6,8 @@ import android.arch.persistence.room.PrimaryKey;
 @Entity(tableName = "medikament_table")
 public class Medikament {
 
+    //joseph was here
+
     @PrimaryKey(autoGenerate = true)
     private int id;
 
