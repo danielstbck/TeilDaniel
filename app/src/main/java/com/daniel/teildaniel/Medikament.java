@@ -23,7 +23,7 @@ public class Medikament {
 
     private String verschreibungspflichtig;
 
-    public Medikament(String name, String wirkstoff, /*String aufbewahrungshinweis, String einnahme, */String anwendungsgebiet, String verschreibungspflichtig) {
+    public Medikament(String name, String wirkstoff, String anwendungsgebiet, String verschreibungspflichtig) {
         this.name = name;
         this.wirkstoff = wirkstoff;
         /*this.aufbewahrungshinweis = aufbewahrungshinweis;

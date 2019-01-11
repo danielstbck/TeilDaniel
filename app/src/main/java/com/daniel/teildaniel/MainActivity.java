@@ -137,14 +137,8 @@ public class MainActivity extends AppCompatActivity {
         ArrayList<Medikament> filteredList = new ArrayList<>();
 
         for(Medikament med : adapter.getMedikamente()) {
-            if (med.getName().toLowerCase().startsWith(text.toLowerCase())) {
-                if (!filteredList.contains(med)) {
+            if (med.getName().toLowerCase().contains(text.toLowerCase())) {
                     filteredList.add(med);
-                }
-            } else if (med.getName().toLowerCase().contains(text.toLowerCase())) {
-                if (!filteredList.contains(med)) {
-                    filteredList.add(med);
-                }
             }
         }
 
