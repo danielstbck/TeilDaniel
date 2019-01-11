@@ -55,7 +55,6 @@ public abstract class MedikamentDatabase extends RoomDatabase {
 
             for (Medikament medikament : medikamentList) {
                 medikamentDao.insert(medikament);
-                System.out.println(medikament.getName());
             }
 
             return null;

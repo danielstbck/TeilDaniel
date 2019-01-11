@@ -44,8 +44,6 @@ public class MainActivity extends AppCompatActivity {
 
     private static MainActivity instance;
 
-    private RelativeLayout relativeLayout;
-
     private TextView begruessungTextView;
 
     final MedikamentAdapter adapter = new MedikamentAdapter();
@@ -54,7 +52,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        relativeLayout = findViewById(R.id.relativeLayoutMain);
 
         instance = this;
 
@@ -93,20 +90,20 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-
+                if(s.toString().equals("") || s.toString().isEmpty()) {
+                    adapter.getFilter().filter(s.toString());
+                    recyclerView.setVisibility(View.INVISIBLE);
+                    begruessungTextView.setVisibility(View.INVISIBLE);
+                } else {
+                    adapter.getFilter().filter(s.toString());
+                    recyclerView.setVisibility(View.VISIBLE);
+                    begruessungTextView.setVisibility(View.INVISIBLE);
+                }
             }
 
             @Override
             public void afterTextChanged(Editable s) {
-                if(s.toString().equals("") || s.toString().isEmpty()) {
-                    adapter.setMedikamente(unfilteredList);
-                    recyclerView.setVisibility(View.INVISIBLE);
-                    begruessungTextView.setVisibility(View.INVISIBLE);
-                } else {
-                    filter(s.toString());
-                    recyclerView.setVisibility(View.VISIBLE);
-                    begruessungTextView.setVisibility(View.INVISIBLE);
-                }
+
             }
         });
 
@@ -131,18 +128,6 @@ public class MainActivity extends AppCompatActivity {
 
         startActivity(medikamentIntent);
 
-    }
-
-    private void filter(String text) {
-        ArrayList<Medikament> filteredList = new ArrayList<>();
-
-        for(Medikament med : adapter.getMedikamente()) {
-            if (med.getName().toLowerCase().contains(text.toLowerCase())) {
-                    filteredList.add(med);
-            }
-        }
-
-        adapter.filterList(filteredList);
     }
 
     public List<Medikament> readCSV() {

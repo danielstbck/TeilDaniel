@@ -29,10 +29,6 @@ public class MedikamentActivity extends AppCompatActivity {
         String anwendung = intent.getStringExtra(EXTRA_MEDIKAMENT_ANWENDUNG);
         String verschreibung = intent.getStringExtra(EXTRA_MEDIKAMENT_VERSCHREIBUNGSPFLICHTIG);
 
-        wirkstoff = wirkstoff.toLowerCase();
-        wirkstoff = Character.toUpperCase(wirkstoff.charAt(0)) +
-                (wirkstoff.length() > 1 ? wirkstoff.substring(1) : "");
-
         nameTextView.setText(intent.getStringExtra(EXTRA_MEDIKAMENT_NAME));
         wirkstoffTextView.setText(wirkstoff);
         anwendungsTextView.setText(intent.getStringExtra(EXTRA_MEDIKAMENT_ANWENDUNG));

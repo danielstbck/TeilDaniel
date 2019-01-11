@@ -5,14 +5,18 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class MedikamentAdapter extends RecyclerView.Adapter<MedikamentAdapter.MedikamentHolder> {
+public class MedikamentAdapter extends RecyclerView.Adapter<MedikamentAdapter.MedikamentHolder> implements Filterable {
 
     private List<Medikament> medikamente = new ArrayList<>();
+
+    private List<Medikament> mOriginalValues = new ArrayList<>();
 
     private OnItemClickListener listener;
 
@@ -41,12 +45,67 @@ public class MedikamentAdapter extends RecyclerView.Adapter<MedikamentAdapter.Me
 
     public void setMedikamente(List<Medikament> medikamente) {
         this.medikamente = medikamente;
+        this.mOriginalValues = medikamente;
         notifyDataSetChanged();
     }
 
     public List<Medikament> getMedikamente() {
         return medikamente;
     }
+
+    // ---------------------------------------------------------------------------------------------
+
+    @Override
+    public Filter getFilter() {
+        Filter filter = new Filter() {
+
+            @SuppressWarnings("unchecked")
+            @Override
+            protected void publishResults(CharSequence constraint,FilterResults results) {
+
+                medikamente = (ArrayList<Medikament>) results.values; // has the filtered values
+                notifyDataSetChanged();  // notifies the data with new filtered values
+            }
+
+            @Override
+            protected FilterResults performFiltering(CharSequence constraint) {
+                FilterResults results = new FilterResults();        // Holds the results of a filtering operation in values
+                ArrayList<Medikament> FilteredArrList = new ArrayList<Medikament>();
+
+                if (mOriginalValues == null) {
+                    mOriginalValues = new ArrayList<Medikament>(medikamente); // saves the original data in mOriginalValues
+                }
+
+                /********
+                 *
+                 *  If constraint(CharSequence that is received) is null returns the mOriginalValues(Original) values
+                 *  else does the Filtering and returns FilteredArrList(Filtered)
+                 *
+                 ********/
+                if (constraint == null || constraint.length() == 0) {
+
+                    // set the Original result to return
+                    results.count = mOriginalValues.size();
+                    results.values = mOriginalValues;
+                } else {
+                    constraint = constraint.toString().toLowerCase();
+                    for (int i = 0; i < mOriginalValues.size(); i++) {
+                        String data = mOriginalValues.get(i).getName();
+                        if (data.toLowerCase().startsWith(constraint.toString())) {
+                            FilteredArrList.add(new Medikament(mOriginalValues.get(i).getName(),mOriginalValues.get(i).getWirkstoff(), mOriginalValues.get(i).getAnwendungsgebiet(), mOriginalValues.get(i).getVerschreibungspflichtig()));
+                        }
+                    }
+                    // set the Filtered result to return
+                    results.count = FilteredArrList.size();
+                    results.values = FilteredArrList;
+                }
+                return results;
+            }
+        };
+        return filter;
+    }
+
+    // ---------------------------------------------------------------------------------------------
 
     class MedikamentHolder extends RecyclerView.ViewHolder {
         private TextView textViewName;
